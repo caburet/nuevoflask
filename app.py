@@ -6,13 +6,11 @@ app = Flask(__name__) #creamos una instancia de la clase Flask
 inicializar_usuarios()
 
 @app.route('/usuarios/', methods=["GET"])
-def create_user_route():
+def obtener_usuarios_json():
     return jsonify(obtener_usuarios())
 
 @app.route('/usuarios/', methods=["POST"])
-def index3():
-    # Handles POST requests to /ejemplos/ route
-    # Retrieves name, email, password from request form 
-    # Returns greeting with name, email, password
-    crear_usuario("juan", "1234")
-    return "algo",200
+def crear_usuario_json():
+    usuario = json.loads(request.data)
+    usuario_creado=crear_usuario(usuario["nombre_de_usuario"], usuario["contraseña"])
+    return jsonify(usuario_creado),200
