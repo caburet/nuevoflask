@@ -3,19 +3,13 @@ from modelo.usuario import crear_usuario, obtener_usuario_por_id, obtener_usuari
 import json
 
 app = Flask(__name__) #creamos una instancia de la clase Flask
-listadeejemplos = ["algoritmos", "programacion", "python"]
 inicializar_usuarios()
 
-@app.route('/')
-def index():
-    return '<h1>Hola!</h1>'
-
-
-@app.route('/ejemplos/', methods=["GET"])
+@app.route('/usuarios/', methods=["GET"])
 def create_user_route():
-    
     return jsonify(obtener_usuarios())
-@app.route('/ejemplos/', methods=["POST"])
+
+@app.route('/usuarios/', methods=["POST"])
 def index3():
     # Handles POST requests to /ejemplos/ route
     # Retrieves name, email, password from request form 
